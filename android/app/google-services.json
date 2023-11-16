@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "436888358788",
+    "project_id": "red2social-86e8a",
+    "storage_bucket": "red2social-86e8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436888358788:android:6bdf70c8a623781cfbd7d1",
+        "android_client_info": {
+          "package_name": "com.example.red2social"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQJR1BatkN7R6qHlpVx35ZcsrAZBK5oPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
