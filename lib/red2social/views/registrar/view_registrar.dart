@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:red2social/red2social/views/registrar/view_registrar.dart';
 
-class ViewLogin extends StatefulWidget {
-  const ViewLogin({super.key});
+class ViewRegistrarUser extends StatefulWidget {
+  const ViewRegistrarUser({super.key});
 
   @override
-  State<ViewLogin> createState() => _ViewLoginState();
+  State<ViewRegistrarUser> createState() => _ViewLoginState();
 }
 
-class _ViewLoginState extends State<ViewLogin> {
-  final TextEditingController _corre = TextEditingController();
+class _ViewLoginState extends State<ViewRegistrarUser> {
+  final TextEditingController _user = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
   @override
@@ -27,7 +26,7 @@ class _ViewLoginState extends State<ViewLogin> {
               child: Column(
                 children: <Widget>[
                   _buildIconUser(context),
-                  _buildInput(context, _corre, _password),
+                  _buildInput(context, _user, _password),
                   _buildButton(context),
                 ],
               ),
@@ -92,7 +91,28 @@ Widget _buildInput(BuildContext context, TextEditingController user,
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
               ),
-            )
+            ),
+          ],
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(5),
+              child: Icon(Icons.people),
+            ),
+            Container(
+              width: 200,
+              padding: const EdgeInsets.all(5),
+              child: TextField(
+                controller: password,
+                decoration: const InputDecoration(labelText: 'Password'),
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
+              ),
+            ),
           ],
         ),
       ),
@@ -108,20 +128,16 @@ Widget _buildButton(BuildContext context) {
             const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
         width: 400,
         child: ElevatedButton(
-            onPressed: () {}, child: const Text('Inicias sesion')),
+            onPressed: () {}, child: const Text('Registrar User')),
       ),
       Container(
         padding: const EdgeInsets.all(5),
         width: 400,
         child: TextButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ViewRegistrarUser(),
-                  ));
+              Navigator.of(context).pop();
             },
-            child: const Text('Crear User')),
+            child: const Text('Regresar')),
       ),
     ],
   );

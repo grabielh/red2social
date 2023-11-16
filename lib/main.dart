@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:red2social/firebase_options.dart';
-import 'package:red2social/red2social/services/services_login.dart';
+import 'package:red2social/red2social/infraestructura/service_firebase/services_firebase_login.dart';
 import 'package:red2social/red2social/views/login/view_login.dart';
 
 Future main() async {
@@ -18,8 +18,8 @@ class AppRedSolcial extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ServiceLogin>(
-          create: (context) => ServiceLogin(),
+        ChangeNotifierProvider<FirebaseAuthServices>(
+          create: (context) => FirebaseAuthServices(),
         )
       ],
       child: const MaterialApp(
