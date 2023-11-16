@@ -1,4 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:red2social/red2social/infraestructura/service_firebase/services_firebase_login.dart';
+import 'package:red2social/red2social/views/home/view_home.dart';
 
 class ViewRegistrarUser extends StatefulWidget {
   const ViewRegistrarUser({super.key});
@@ -8,8 +13,33 @@ class ViewRegistrarUser extends StatefulWidget {
 }
 
 class _ViewLoginState extends State<ViewRegistrarUser> {
-  final TextEditingController _user = TextEditingController();
+  final TextEditingController _correo = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final FirebaseAuthServices authServices = FirebaseAuthServices();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _correo.dispose();
+    _password.dispose();
+  }
+
+  void _singUp() async {
+    String correo = _correo.text.trim();
+    String password = _password.text.trim();
+    User? user = await authServices.signInWithEmailAndPassword(
+        context, correo, password);
+    if (user != null) {
+      print('User registrado Correctamente!');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreens(),
+          ));
+    } else {
+      print('Error no se registro el usuario');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +56,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
               child: Column(
                 children: <Widget>[
                   _buildIconUser(context),
-                  _buildInput(context, _user, _password),
+                  _buildInput(context, _correo, _password),
                   _buildButton(context),
                 ],
               ),
@@ -50,7 +80,7 @@ Widget _buildIconUser(BuildContext context) {
   );
 }
 
-Widget _buildInput(BuildContext context, TextEditingController user,
+Widget _buildInput(BuildContext context, TextEditingController correo,
     TextEditingController password) {
   return Column(
     children: [
@@ -66,7 +96,7 @@ Widget _buildInput(BuildContext context, TextEditingController user,
               width: 200,
               padding: const EdgeInsets.all(5),
               child: TextField(
-                controller: user,
+                controller: correo,
                 decoration: const InputDecoration(labelText: 'Correo'),
                 keyboardType: TextInputType.text,
               ),
