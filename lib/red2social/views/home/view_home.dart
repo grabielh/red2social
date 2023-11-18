@@ -12,25 +12,58 @@ class HomeScreens extends StatelessWidget {
     final themeNotifier = Provider.of<ThemeNotifier>(context, listen: false);
 
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.only(top: 50),
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: 400,
-          child: Column(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ViewLogin(),
-                        ));
-                  },
-                  child: const Text('inLogin')),
-            ],
-          ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(
+            color: Colors.amber), // Cambia el color del icono del Drawer aquí
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(
+                  top: 60, left: 20, right: 20, bottom: 20),
+              width: 200,
+              height: 200,
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 40),
+                    child: const Icon(
+                      Icons.verified_user,
+                      size: 100,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.amber), // Define el borde
+                borderRadius:
+                    BorderRadius.circular(8.0), // Ajusta el radio del borde
+              ),
+              width: 300,
+              margin: const EdgeInsets.only(top: 5),
+              child: TextButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ViewLogin(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'inLogin',
+                  style: TextStyle(color: Colors.amber),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: IconButton(

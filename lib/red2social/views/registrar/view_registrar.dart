@@ -29,12 +29,13 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(5),
         width: 500,
         height: 900,
-        color: Colors.redAccent,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:
+              const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
           child: Card(
             child: SingleChildScrollView(
               child: Column(
@@ -53,12 +54,13 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
 
   Widget _buildIconUser(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+      margin: const EdgeInsets.only(top: 15, left: 20, right: 20, bottom: 20),
       width: 200,
       height: 200,
       child: const Icon(
         Icons.verified_user,
         size: 100,
+        color: Colors.green,
       ),
     );
   }
@@ -69,7 +71,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
       children: [
         Container(
           margin:
-              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 40),
           child: Row(
             children: [
               const Padding(
@@ -77,11 +79,14 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 200,
+                width: 250,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: userName,
-                  decoration: const InputDecoration(labelText: 'userName'),
+                  decoration: InputDecoration(
+                      labelText: 'userName',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.text,
                 ),
               )
@@ -98,11 +103,14 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 200,
+                width: 250,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: correo,
-                  decoration: const InputDecoration(labelText: 'Correo'),
+                  decoration: InputDecoration(
+                      labelText: 'Correo',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.emailAddress,
                 ),
               ),
@@ -119,11 +127,14 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 200,
+                width: 250,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
                 ),
@@ -140,7 +151,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
       children: [
         Container(
           padding:
-              const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+              const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 20),
           width: 400,
           child: ElevatedButton(
               onPressed: _singUp, child: const Text('Registrar User')),

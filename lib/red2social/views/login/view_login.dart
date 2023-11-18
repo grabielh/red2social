@@ -15,8 +15,9 @@ class ViewLogin extends StatefulWidget {
 }
 
 class _ViewLoginState extends State<ViewLogin> {
-  final TextEditingController _correo = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final TextEditingController _correo =
+      TextEditingController(text: 'alfrellack@gmail.com');
+  final TextEditingController _password = TextEditingController(text: '123456');
   final FirebaseAuthServices authServices = FirebaseAuthServices();
 
   @override
@@ -31,11 +32,13 @@ class _ViewLoginState extends State<ViewLogin> {
     final loginFirebase = Provider.of<FirebaseAuthServices>(context);
     return Scaffold(
       body: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(5),
         width: 500,
         height: 900,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:
+              const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
           child: Card(
             child: SingleChildScrollView(
               child: Column(
@@ -64,15 +67,9 @@ class _ViewLoginState extends State<ViewLogin> {
             child: const Icon(
               Icons.verified_user,
               size: 100,
+              color: Colors.green,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 40),
-            child: Text(
-              'Login red2 Social',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          )
         ],
       ),
     );
@@ -92,11 +89,14 @@ class _ViewLoginState extends State<ViewLogin> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 200,
+                width: 250,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: user,
-                  decoration: const InputDecoration(labelText: 'Correo'),
+                  decoration: InputDecoration(
+                      labelText: 'Correo',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.emailAddress,
                 ),
               )
@@ -113,11 +113,14 @@ class _ViewLoginState extends State<ViewLogin> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 200,
+                width: 250,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
-                  decoration: const InputDecoration(labelText: 'Password'),
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
                 ),
@@ -140,7 +143,7 @@ class _ViewLoginState extends State<ViewLogin> {
               onPressed: () {
                 _singUp(loginFirebase);
               },
-              child: const Text('Inicias sesion')),
+              child: const Text('Iniciar sesion')),
         ),
         Container(
           padding: const EdgeInsets.all(5),
@@ -165,15 +168,32 @@ class _ViewLoginState extends State<ViewLogin> {
     User? user = await authServices.signInWithEmailAndPassword(
         context, correo, password);
     if (user != null) {
-      print('Credenciales correctas Bienvenid !!');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeScreens(),
-          ));
-    } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Ingrese datos validos!')));
+        const SnackBar(
+          backgroundColor: Colors.white,
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.check_circle,
+                size: 30,
+                color: Colors.green, // Color del icono
+              ),
+              Text(
+                'Bienvenido !',
+                style: TextStyle(color: Colors.amber),
+              )
+            ],
+          ),
+        ),
+      );
+      await Future.delayed(const Duration(seconds: 2));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreens(),
+        ),
+      );
     }
   }
 }

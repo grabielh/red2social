@@ -34,11 +34,12 @@ class _AppRedSolcialState extends State<AppRedSolcial> {
       child: Consumer<ThemeNotifier>(
         builder: (context, themeNotifier, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: ThemeData(
               colorScheme: themeNotifier.isDarkMode
                   ? const ColorScheme.highContrastDark(primary: Colors.amber)
                   : const ColorScheme.highContrastLight(
-                      secondary: Colors.red, primary: Colors.amber),
+                      secondary: Colors.black, primary: Colors.amber),
             ),
             home: const ViewLogin(),
           );

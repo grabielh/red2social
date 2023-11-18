@@ -7,7 +7,6 @@ import 'package:red2social/red2social/dominio/gateway_login/gateway_login.dart';
 class FirebaseAuthServices extends ChangeNotifier implements LoginGateway {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
   @override
   Future<User?> signUpWithEmailAndPassaword(
       BuildContext context, String correo, String password) async {
@@ -17,22 +16,57 @@ class FirebaseAuthServices extends ChangeNotifier implements LoginGateway {
 
       return userCredential.user;
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Error')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.white,
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.change_circle_sharp,
+                size: 30,
+                color: Colors.green, // Color del icono
+              ),
+              Text(
+                'Complete los datos !',
+                style: TextStyle(color: Colors.red),
+              )
+            ],
+          ),
+        ),
+      );
     }
     return null;
   }
 
   @override
-  Future<User?> signInWithEmailAndPassword(BuildContext context, String correo, String password) async{
+  Future<User?> signInWithEmailAndPassword(
+      BuildContext context, String correo, String password) async {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: correo, password: password);
 
       return userCredential.user;
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Error')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.white,
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.change_circle_sharp,
+                size: 30,
+                color: Colors.green, // Color del icono
+              ),
+              Text(
+                'Ingrese datos validos !',
+                style: TextStyle(color: Colors.red),
+              )
+            ],
+          ),
+        ),
+      );
     }
     return null;
   }
