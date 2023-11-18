@@ -1,11 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:red2social/red2social/views/home/home_options/home_option_view.dart';
 import 'package:red2social/red2social/views/user_login/view_login.dart';
 import 'package:red2social/red2social/views/themes/theme_notifer.dart';
 
-class HomeScreens extends StatelessWidget {
+class HomeScreens extends StatefulWidget {
   const HomeScreens({super.key});
+
+  @override
+  State<HomeScreens> createState() => _HomeScreensState();
+}
+
+class _HomeScreensState extends State<HomeScreens> {
+  int index = 0;
+  List<Widget> indesPage = const [
+    HomeOptionview(),
+    HomeOptionview(),
+    HomeOptionview()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +28,7 @@ class HomeScreens extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(
-            color: Colors.amber), // Cambia el color del icono del Drawer aquí
+        iconTheme: const IconThemeData(color: Colors.amber),
       ),
       drawer: Drawer(
         child: Column(
@@ -65,6 +77,21 @@ class HomeScreens extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      body: indesPage[index],
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: ''),
+          NavigationDestination(
+              icon: Icon(Icons.library_add_outlined), label: ''),
+          NavigationDestination(icon: Icon(Icons.people_alt), label: ''),
+        ],
+        onDestinationSelected: (index) {
+          setState(() {
+            this.index = index;
+          });
+        },
+        selectedIndex: index,
       ),
       floatingActionButton: IconButton(
           onPressed: () {

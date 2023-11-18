@@ -12,14 +12,9 @@ Future main() async {
   runApp(const AppRedSolcial());
 }
 
-class AppRedSolcial extends StatefulWidget {
+class AppRedSolcial extends StatelessWidget {
   const AppRedSolcial({super.key});
 
-  @override
-  State<AppRedSolcial> createState() => _AppRedSolcialState();
-}
-
-class _AppRedSolcialState extends State<AppRedSolcial> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -37,7 +32,8 @@ class _AppRedSolcialState extends State<AppRedSolcial> {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               colorScheme: themeNotifier.isDarkMode
-                  ? const ColorScheme.highContrastDark(primary: Colors.amber)
+                  ? const ColorScheme.highContrastDark(
+                      primary: Colors.amber, secondary: Colors.amber)
                   : const ColorScheme.highContrastLight(
                       secondary: Colors.black, primary: Colors.amber),
             ),
