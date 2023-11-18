@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeOptionview extends StatelessWidget {
-  const HomeOptionview({super.key});
+class ViewHomeOptionone extends StatelessWidget {
+  const ViewHomeOptionone({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class HomeOptionview extends StatelessWidget {
         margin: const EdgeInsets.only(top: 30),
         padding: const EdgeInsets.all(5),
         child: const Column(
-          children: [Text('data')],
+          children: [Text('data One')],
         ),
       ),
     );

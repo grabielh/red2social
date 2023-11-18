@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:red2social/red2social/views/home/home_options/home_option_view.dart';
+import 'package:red2social/red2social/views/home/home_options/view_home_optionone/view_home_optionone.dart';
+import 'package:red2social/red2social/views/home/home_options/view_home_optionthree/view_people_optionthree.dart';
+import 'package:red2social/red2social/views/home/home_options/view_home_optiontwo/view_add_optiontwo.dart';
 import 'package:red2social/red2social/views/user_login/view_login.dart';
 import 'package:red2social/red2social/views/themes/theme_notifer.dart';
 
@@ -15,9 +17,9 @@ class HomeScreens extends StatefulWidget {
 class _HomeScreensState extends State<HomeScreens> {
   int index = 0;
   List<Widget> indesPage = const [
-    HomeOptionview(),
-    HomeOptionview(),
-    HomeOptionview()
+    ViewHomeOptionone(),
+    ViewHomeOptiontwo(),
+    ViewHomeOptionthree()
   ];
 
   @override

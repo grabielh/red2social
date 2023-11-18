@@ -35,7 +35,7 @@ class AppRedSolcial extends StatelessWidget {
                   ? const ColorScheme.highContrastDark(
                       primary: Colors.amber, secondary: Colors.amber)
                   : const ColorScheme.highContrastLight(
-                      secondary: Colors.black, primary: Colors.amber),
+                      secondary: Colors.amber, primary: Colors.amber),
             ),
             home: const ViewLogin(),
           );
