@@ -13,6 +13,7 @@ class ViewRegistrarUser extends StatefulWidget {
 }
 
 class _ViewLoginState extends State<ViewRegistrarUser> {
+  final TextEditingController _userName = TextEditingController();
   final TextEditingController _correo = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final FirebaseAuthServices authServices = FirebaseAuthServices();
@@ -22,23 +23,6 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
     super.dispose();
     _correo.dispose();
     _password.dispose();
-  }
-
-  void _singUp() async {
-    String correo = _correo.text.trim();
-    String password = _password.text.trim();
-    User? user = await authServices.signInWithEmailAndPassword(
-        context, correo, password);
-    if (user != null) {
-      print('User registrado Correctamente!');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeScreens(),
-          ));
-    } else {
-      print('Error no se registro el usuario');
-    }
   }
 
   @override
@@ -56,7 +40,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
               child: Column(
                 children: <Widget>[
                   _buildIconUser(context),
-                  _buildInput(context, _correo, _password),
+                  _buildInput(context, _correo, _password, _userName),
                   _buildButton(context),
                 ],
               ),
@@ -66,109 +50,128 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
       ),
     );
   }
-}
 
-Widget _buildIconUser(BuildContext context) {
-  return Container(
-    margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
-    width: 200,
-    height: 200,
-    child: const Icon(
-      Icons.verified_user,
-      size: 100,
-    ),
-  );
-}
+  Widget _buildIconUser(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+      width: 200,
+      height: 200,
+      child: const Icon(
+        Icons.verified_user,
+        size: 100,
+      ),
+    );
+  }
 
-Widget _buildInput(BuildContext context, TextEditingController correo,
-    TextEditingController password) {
-  return Column(
-    children: [
-      Container(
-        margin: const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
-        child: Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(5),
-              child: Icon(Icons.people),
-            ),
-            Container(
-              width: 200,
-              padding: const EdgeInsets.all(5),
-              child: TextField(
-                controller: correo,
-                decoration: const InputDecoration(labelText: 'Correo'),
-                keyboardType: TextInputType.text,
+  Widget _buildInput(BuildContext context, TextEditingController correo,
+      TextEditingController password, TextEditingController userName) {
+    return Column(
+      children: [
+        Container(
+          margin:
+              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(Icons.people),
               ),
-            )
-          ],
+              Container(
+                width: 200,
+                padding: const EdgeInsets.all(5),
+                child: TextField(
+                  controller: userName,
+                  decoration: const InputDecoration(labelText: 'userName'),
+                  keyboardType: TextInputType.text,
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
-        child: Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(5),
-              child: Icon(Icons.people),
-            ),
-            Container(
-              width: 200,
-              padding: const EdgeInsets.all(5),
-              child: TextField(
-                controller: password,
-                decoration: const InputDecoration(labelText: 'Password'),
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
+        Container(
+          margin:
+              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(Icons.people),
               ),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
-        child: Row(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(5),
-              child: Icon(Icons.people),
-            ),
-            Container(
-              width: 200,
-              padding: const EdgeInsets.all(5),
-              child: TextField(
-                controller: password,
-                decoration: const InputDecoration(labelText: 'Password'),
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
+              Container(
+                width: 200,
+                padding: const EdgeInsets.all(5),
+                child: TextField(
+                  controller: correo,
+                  decoration: const InputDecoration(labelText: 'Correo'),
+                  keyboardType: TextInputType.emailAddress,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    ],
-  );
-}
+        Container(
+          margin:
+              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(Icons.people),
+              ),
+              Container(
+                width: 200,
+                padding: const EdgeInsets.all(5),
+                child: TextField(
+                  controller: password,
+                  decoration: const InputDecoration(labelText: 'Password'),
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
-Widget _buildButton(BuildContext context) {
-  return Column(
-    children: [
-      Container(
-        padding:
-            const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
-        width: 400,
-        child: ElevatedButton(
-            onPressed: () {}, child: const Text('Registrar User')),
-      ),
-      Container(
-        padding: const EdgeInsets.all(5),
-        width: 400,
-        child: TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Regresar')),
-      ),
-    ],
-  );
+  Widget _buildButton(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          padding:
+              const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+          width: 400,
+          child: ElevatedButton(
+              onPressed: _singUp, child: const Text('Registrar User')),
+        ),
+        Container(
+          padding: const EdgeInsets.all(5),
+          width: 400,
+          child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Regresar')),
+        ),
+      ],
+    );
+  }
+
+  void _singUp() async {
+    String correo = _correo.text.trim();
+    String password = _password.text.trim();
+    User? user = await authServices.signUpWithEmailAndPassaword(
+        context, correo, password);
+    if (user != null) {
+      print('User registrado Correctamente!');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreens(),
+          ));
+    } else {
+      print('Error no se registro el usuario');
+    }
+  }
 }

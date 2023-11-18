@@ -9,7 +9,7 @@ class FirebaseAuthServices extends ChangeNotifier implements LoginGateway {
 
 
   @override
-  Future<User?> sinUpWithEmailAndPassaword(
+  Future<User?> signUpWithEmailAndPassaword(
       BuildContext context, String correo, String password) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -22,7 +22,7 @@ class FirebaseAuthServices extends ChangeNotifier implements LoginGateway {
     }
     return null;
   }
-  
+
   @override
   Future<User?> signInWithEmailAndPassword(BuildContext context, String correo, String password) async{
     try {
