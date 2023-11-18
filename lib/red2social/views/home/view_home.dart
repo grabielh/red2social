@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:red2social/red2social/views/login/view_login.dart';
+import 'package:red2social/red2social/views/user_login/view_login.dart';
 import 'package:red2social/red2social/views/themes/theme_notifer.dart';
 
 class HomeScreens extends StatelessWidget {

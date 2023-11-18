@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:red2social/red2social/infraestructura/service_firebase/services_firebase_login.dart';
 import 'package:red2social/red2social/views/home/view_home.dart';
-import 'package:red2social/red2social/views/registrar/view_registrar.dart';
+import 'package:red2social/red2social/views/user_register/view_registrar.dart';
 
 class ViewLogin extends StatefulWidget {
   const ViewLogin({super.key});
