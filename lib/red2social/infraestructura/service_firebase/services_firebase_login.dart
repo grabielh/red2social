@@ -28,7 +28,7 @@ class FirebaseAuthServices extends ChangeNotifier implements LoginGateway {
                 color: Colors.green, // Color del icono
               ),
               Text(
-                'Complete los datos !',
+                'Complete los campos !',
                 style: TextStyle(color: Colors.red),
               )
             ],

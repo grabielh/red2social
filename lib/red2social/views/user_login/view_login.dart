@@ -20,6 +20,7 @@ class _ViewLoginState extends State<ViewLogin> {
       TextEditingController(text: 'alfrellack@gmail.com');
   final TextEditingController _password = TextEditingController(text: '123456');
   final FirebaseAuthServices authServices = FirebaseAuthServices();
+  bool visibleTrue = true;
 
   @override
   void dispose() {
@@ -111,7 +112,7 @@ class _ViewLoginState extends State<ViewLogin> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(Icons.people),
+                child: Icon(Icons.email_outlined),
               ),
               Container(
                 width: 260,
@@ -135,10 +136,10 @@ class _ViewLoginState extends State<ViewLogin> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(Icons.people),
+                child: Icon(Icons.password_outlined),
               ),
               Container(
-                width: 260,
+                width: 220,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
@@ -147,9 +148,16 @@ class _ViewLoginState extends State<ViewLogin> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
+                  obscureText: visibleTrue,
                 ),
-              )
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      visibleTrue = !visibleTrue;
+                    });
+                  },
+                  icon: const Icon(Icons.visibility))
             ],
           ),
         ),

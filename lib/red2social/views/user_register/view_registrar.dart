@@ -17,6 +17,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
   final TextEditingController _correo = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final FirebaseAuthServices authServices = FirebaseAuthServices();
+  bool visibleTrue = true;
 
   @override
   void dispose() {
@@ -100,7 +101,7 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(Icons.people),
+                child: Icon(Icons.email_outlined),
               ),
               Container(
                 width: 250,
@@ -124,10 +125,10 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(Icons.people),
+                child: Icon(Icons.password_outlined),
               ),
               Container(
-                width: 250,
+                width: 200,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
@@ -136,9 +137,16 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
+                  obscureText: visibleTrue,
                 ),
               ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      visibleTrue = !visibleTrue;
+                    });
+                  },
+                  icon: const Icon(Icons.visibility))
             ],
           ),
         ),
