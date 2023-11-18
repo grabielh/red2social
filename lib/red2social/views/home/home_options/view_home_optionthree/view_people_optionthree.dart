@@ -12,7 +12,7 @@ class ViewHomeOptionthree
         margin: const EdgeInsets.only(top: 30),
         padding: const EdgeInsets.all(5),
         child: const Column(
-          children: [Text('data Three')],
+          children: [Text('data People')],
         ),
       ),
     );

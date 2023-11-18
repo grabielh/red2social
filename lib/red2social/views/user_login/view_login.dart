@@ -15,6 +15,7 @@ class ViewLogin extends StatefulWidget {
 }
 
 class _ViewLoginState extends State<ViewLogin> {
+  final TextEditingController _userName = TextEditingController(text: 'Zac');
   final TextEditingController _correo =
       TextEditingController(text: 'alfrellack@gmail.com');
   final TextEditingController _password = TextEditingController(text: '123456');
@@ -57,7 +58,7 @@ class _ViewLoginState extends State<ViewLogin> {
 
   Widget _buildIconUser(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
+      margin: const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 20),
       width: 200,
       height: 200,
       child: Column(
@@ -81,7 +82,7 @@ class _ViewLoginState extends State<ViewLogin> {
       children: [
         Container(
           margin:
-              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 10, left: 20, right: 40, bottom: 40),
           child: Row(
             children: [
               const Padding(
@@ -89,7 +90,31 @@ class _ViewLoginState extends State<ViewLogin> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 250,
+                width: 260,
+                padding: const EdgeInsets.all(5),
+                child: TextField(
+                  controller: _userName,
+                  decoration: InputDecoration(
+                      labelText: 'userName',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              )
+            ],
+          ),
+        ),
+        Container(
+          margin:
+              const EdgeInsets.only(top: 10, left: 20, right: 40, bottom: 40),
+          child: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(5),
+                child: Icon(Icons.people),
+              ),
+              Container(
+                width: 260,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: user,
@@ -105,7 +130,7 @@ class _ViewLoginState extends State<ViewLogin> {
         ),
         Container(
           margin:
-              const EdgeInsets.only(top: 40, left: 40, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 30, left: 20, right: 40, bottom: 40),
           child: Row(
             children: [
               const Padding(
@@ -113,7 +138,7 @@ class _ViewLoginState extends State<ViewLogin> {
                 child: Icon(Icons.people),
               ),
               Container(
-                width: 250,
+                width: 260,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
@@ -177,7 +202,7 @@ class _ViewLoginState extends State<ViewLogin> {
               Icon(
                 Icons.check_circle,
                 size: 30,
-                color: Colors.green, // Color del icono
+                color: Colors.green,
               ),
               Text(
                 'Bienvenido !',

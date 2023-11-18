@@ -55,9 +55,9 @@ class _HomeScreensState extends State<HomeScreens> {
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.amber), // Define el borde
+                border: Border.all(color: Colors.amber),
                 borderRadius:
-                    BorderRadius.circular(8.0), // Ajusta el radio del borde
+                    BorderRadius.circular(8.0),
               ),
               width: 300,
               margin: const EdgeInsets.only(top: 5),
