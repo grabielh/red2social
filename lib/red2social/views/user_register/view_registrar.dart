@@ -30,22 +30,19 @@ class _ViewLoginState extends State<ViewRegistrarUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
         padding: const EdgeInsets.all(5),
         width: 500,
         height: 900,
         child: Padding(
           padding:
               const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
-          child: Card(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  _buildIconUser(context),
-                  _buildInput(context, _correo, _password, _userName),
-                  _buildButton(context),
-                ],
-              ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _buildIconUser(context),
+                _buildInput(context, _correo, _password, _userName),
+                _buildButton(context),
+              ],
             ),
           ),
         ),

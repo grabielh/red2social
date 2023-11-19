@@ -20,7 +20,6 @@ class _ViewLoginState extends State<ViewLogin> {
       TextEditingController(text: 'alfrellack@gmail.com');
   final TextEditingController _password = TextEditingController(text: '123456');
   final FirebaseAuthServices authServices = FirebaseAuthServices();
-  bool visibleTrue = true;
 
   @override
   void dispose() {
@@ -34,22 +33,19 @@ class _ViewLoginState extends State<ViewLogin> {
     final loginFirebase = Provider.of<FirebaseAuthServices>(context);
     return Scaffold(
       body: Container(
-        color: Colors.white,
         padding: const EdgeInsets.all(5),
         width: 500,
         height: 900,
         child: Padding(
           padding:
               const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 10),
-          child: Card(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  _buildIconUser(context),
-                  _buildInput(context, _correo, _password),
-                  _buildButton(context, loginFirebase),
-                ],
-              ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _buildIconUser(context),
+                _buildInput(context, _correo, _password),
+                _buildButton(context, loginFirebase),
+              ],
             ),
           ),
         ),
@@ -83,15 +79,11 @@ class _ViewLoginState extends State<ViewLogin> {
       children: [
         Container(
           margin:
-              const EdgeInsets.only(top: 10, left: 20, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 40),
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(5),
-                child: Icon(Icons.people),
-              ),
               Container(
-                width: 260,
+                width: 300,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: _userName,
@@ -107,15 +99,11 @@ class _ViewLoginState extends State<ViewLogin> {
         ),
         Container(
           margin:
-              const EdgeInsets.only(top: 10, left: 20, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 10, left: 40, right: 40, bottom: 40),
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(5),
-                child: Icon(Icons.email_outlined),
-              ),
               Container(
-                width: 260,
+                width: 300,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: user,
@@ -131,15 +119,11 @@ class _ViewLoginState extends State<ViewLogin> {
         ),
         Container(
           margin:
-              const EdgeInsets.only(top: 30, left: 20, right: 40, bottom: 40),
+              const EdgeInsets.only(top: 30, left: 40, right: 40, bottom: 40),
           child: Row(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(5),
-                child: Icon(Icons.password_outlined),
-              ),
               Container(
-                width: 220,
+                width: 300,
                 padding: const EdgeInsets.all(5),
                 child: TextField(
                   controller: password,
@@ -148,16 +132,9 @@ class _ViewLoginState extends State<ViewLogin> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                   keyboardType: TextInputType.visiblePassword,
-                  obscureText: visibleTrue,
+                  obscureText: true,
                 ),
               ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      visibleTrue = !visibleTrue;
-                    });
-                  },
-                  icon: const Icon(Icons.visibility))
             ],
           ),
         ),
@@ -214,7 +191,7 @@ class _ViewLoginState extends State<ViewLogin> {
               ),
               Text(
                 'Bienvenido !',
-                style: TextStyle(color: Colors.amber),
+                style: TextStyle(color: Colors.green),
               )
             ],
           ),
