@@ -64,13 +64,7 @@ class _HomeScreensState extends State<HomeScreens> {
               margin: const EdgeInsets.only(top: 5),
               child: TextButton(
                 onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ViewLogin(),
-                    ),
-                  );
+                  _showIsLoggingOut(context);
                 },
                 child: const Text(
                   'inLogin',
@@ -108,4 +102,37 @@ class _HomeScreensState extends State<HomeScreens> {
       ),
     );
   }
+}
+
+void _showIsLoggingOut(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return const AlertDialog(
+        content: Row(
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(width: 20),
+            Text('Cerrando sesión...'),
+          ],
+        ),
+      );
+    },
+  );
+
+  Future.delayed(const Duration(seconds: 2), () {
+    FirebaseAuth.instance.signOut().then((_) {
+      Navigator.of(context).pop(); // Cierra el diálogo de carga
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ViewLogin()),
+      );
+    }).catchError((error) {
+      print("Error al cerrar sesión: $error");
+      Navigator.of(context)
+          .pop(); // Cierra el diálogo de carga en caso de error
+    });
+  });
 }
