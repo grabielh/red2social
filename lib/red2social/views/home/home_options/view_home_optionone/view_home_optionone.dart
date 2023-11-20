@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class ViewHomeOptionone extends StatelessWidget {
   const ViewHomeOptionone({Key? key}) : super(key: key);
@@ -9,32 +10,42 @@ class ViewHomeOptionone extends StatelessWidget {
       body: Container(
         width: 400,
         height: 900,
-        margin: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+        margin: const EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 20),
         padding: const EdgeInsets.all(5),
         child: CustomScrollView(
-          slivers: <Widget>[_buildViewgaleriUsers(context)],
+          slivers: <Widget>[
+            _buildViewStados(context),
+            const SliverGap(10),
+            _buildViewgaleriUsers(context)
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildViewStados() {
+  Widget _buildViewStados(BuildContext context) {
     return SliverToBoxAdapter(
-      child: Container(
-        color: Colors.white,
-        width: 400,
-        height: 400,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 10, // Número de elementos que deseas mostrar
-          itemBuilder: (context, index) {
-            // Ejemplo: Mostrar cajas de colores como elementos en el ListView.builder
-            return Container(
-              margin: const EdgeInsets.all(8),
-              width: 100,
-              color: Colors.primaries[index % Colors.primaries.length],
-            );
-          },
+      child: Card(
+        child: SizedBox(
+          //color: Colors.white,
+          width: 400,
+          height: 120,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              // Ejemplo: Mostrar cajas de colores como elementos en el ListView.builder
+              return Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.primaries[index % Colors.primaries.length],
+                    borderRadius: BorderRadius.circular(90)),
+                margin: const EdgeInsets.all(8),
+                width: 100,
+                child: const Text('data'),
+              );
+            },
+          ),
         ),
       ),
     );

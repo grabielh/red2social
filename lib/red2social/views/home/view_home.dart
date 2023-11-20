@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:red2social/red2social/views/home/home_options/view_home_optionone/view_home_optionone.dart';
 import 'package:red2social/red2social/views/home/home_options/view_people_optionthree/view_people_optionthree.dart';
@@ -15,6 +16,7 @@ class HomeScreens extends StatefulWidget {
 }
 
 class _HomeScreensState extends State<HomeScreens> {
+  bool modeDarkLuz = true;
   int index = 0;
   List<Widget> indesPage = const [
     ViewHomeOptionone(),
@@ -56,8 +58,7 @@ class _HomeScreensState extends State<HomeScreens> {
             Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.amber),
-                borderRadius:
-                    BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
               width: 300,
               margin: const EdgeInsets.only(top: 5),
@@ -77,6 +78,16 @@ class _HomeScreensState extends State<HomeScreens> {
                 ),
               ),
             ),
+            const Gap(100),
+            Switch(
+              value: modeDarkLuz,
+              onChanged: (value) {
+                setState(() {
+                  modeDarkLuz = !modeDarkLuz;
+                });
+                themeNotifier.toggleTheme();
+              },
+            )
           ],
         ),
       ),
@@ -95,11 +106,6 @@ class _HomeScreensState extends State<HomeScreens> {
         },
         selectedIndex: index,
       ),
-      floatingActionButton: IconButton(
-          onPressed: () {
-            themeNotifier.toggleTheme();
-          },
-          icon: const Icon(Icons.nights_stay)),
     );
   }
 }
