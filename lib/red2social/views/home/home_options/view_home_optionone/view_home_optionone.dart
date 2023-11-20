@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class ViewHomeOptionone extends StatelessWidget {
   const ViewHomeOptionone({Key? key}) : super(key: key);
@@ -10,45 +9,75 @@ class ViewHomeOptionone extends StatelessWidget {
       body: Container(
         width: 400,
         height: 900,
-        margin: const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+        margin: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
         padding: const EdgeInsets.all(5),
         child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              actions: [
-                Container(
-                  alignment: Alignment.center,
-                  width: 300,
-                  child: const Text('data'),
-                )
+          slivers: <Widget>[_buildViewgaleriUsers(context)],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildViewStados() {
+    return SliverToBoxAdapter(
+      child: Container(
+        color: Colors.white,
+        width: 400,
+        height: 400,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10, // Número de elementos que deseas mostrar
+          itemBuilder: (context, index) {
+            // Ejemplo: Mostrar cajas de colores como elementos en el ListView.builder
+            return Container(
+              margin: const EdgeInsets.all(8),
+              width: 100,
+              color: Colors.primaries[index % Colors.primaries.length],
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildViewgaleriUsers(BuildContext context) {
+    return SliverAnimatedGrid(
+      initialItemCount: 5,
+      itemBuilder: (context, index, animation) {
+        return Card(
+          child: ListTile(
+            title: Row(
+              children: [
+                TextButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.people_alt),
+                    label: const Text(
+                      'Josefina Sandobal',
+                      selectionColor: Colors.redAccent,
+                    )),
               ],
             ),
-            const MaxGap(10),
-            SliverAnimatedGrid(
-              initialItemCount: 10,
-              itemBuilder: (context, index, animation) {
-                return ScaleTransition(
-                  scale: animation,
-                  child: Container(
-                    alignment: Alignment.center,
-                    color: const Color.fromRGBO(68, 138, 255, 1),
-                    child: SizedBox(
-                      width: 100,
-                      height: 100,
-                      child: Image.asset('assets/splash.png'),
-                    ),
-                  ),
-                );
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
-                childAspectRatio: 1.0,
+            subtitle: ScaleTransition(
+              scale: animation,
+              child: Container(
+                height: 200,
+                alignment: Alignment.topCenter,
+                color: const Color(0xff2a324b),
+                child: SizedBox(
+                  width: 300,
+                  height: 200,
+                  child: Image.asset('assets/splash.png'),
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        );
+      },
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1,
       ),
     );
   }

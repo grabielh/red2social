@@ -180,7 +180,7 @@ class _ViewLoginState extends State<ViewLogin> {
     if (user != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(226, 255, 255, 255),
           content: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

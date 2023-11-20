@@ -33,9 +33,9 @@ class AppRedSolcial extends StatelessWidget {
             theme: ThemeData(
               colorScheme: themeNotifier.isDarkMode
                   ? const ColorScheme.highContrastDark(
-                      primary: Colors.amber, secondary: Colors.amber)
+                      primary: Colors.white, secondary: Colors.amber)
                   : const ColorScheme.highContrastLight(
-                      secondary: Colors.amber, primary: Colors.amber),
+                      secondary: Colors.amber, primary: Colors.black),
             ),
             home: const ViewLogin(),
           );
