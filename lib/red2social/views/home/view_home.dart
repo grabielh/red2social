@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:red2social/red2social/views/home/home_options/view_add_optiontwo/view_add_optiontwo.dart';
 import 'package:red2social/red2social/views/home/home_options/view_home_optionone/view_home_optionone.dart';
 import 'package:red2social/red2social/views/home/home_options/view_people_optionthree/view_people_optionthree.dart';
-import 'package:red2social/red2social/views/home/home_options/view_add_optiontwo/view_add_optiontwo.dart';
 import 'package:red2social/red2social/views/user_login/view_login.dart';
 import 'package:red2social/red2social/views/themes/theme_notifer.dart';
 
@@ -17,12 +17,8 @@ class HomeScreens extends StatefulWidget {
 
 class _HomeScreensState extends State<HomeScreens> {
   bool modeDarkLuz = true;
-  int index = 0;
-  List<Widget> indesPage = const [
-    ViewHomeOptionone(),
-    ViewHomeOptiontwo(),
-    ViewHomeOptionthree()
-  ];
+  final PageController _pageController = PageController();
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +26,12 @@ class _HomeScreensState extends State<HomeScreens> {
 
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Views '),
         elevation: 0,
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.amber),
       ),
+      //Menu de opciones !
       drawer: Drawer(
         child: Column(
           children: [
@@ -85,20 +83,88 @@ class _HomeScreensState extends State<HomeScreens> {
           ],
         ),
       ),
-      body: indesPage[index],
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: ''),
-          NavigationDestination(
-              icon: Icon(Icons.library_add_outlined), label: ''),
-          NavigationDestination(icon: Icon(Icons.people_alt), label: ''),
-        ],
-        onDestinationSelected: (index) {
-          setState(() {
-            this.index = index;
-          });
-        },
-        selectedIndex: index,
+      //body ... Contenido principal Views !
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: Card(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 50,
+                child: BottomNavigationBar(
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.person,
+                        size: 20,
+                      ),
+                      label: 'Contactos',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.group,
+                        size: 20,
+                      ),
+                      label: 'Grupos',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.stacked_line_chart,
+                        size: 20,
+                      ),
+                      label: 'Galeria',
+                    ),
+                  ],
+                  currentIndex: _currentIndex,
+                  onTap: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                      _pageController.animateToPage(index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut);
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: const SizedBox(
+                        width: 380,
+                        height: 700,
+                        child: ViewHomeOptiontwo(),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: const SizedBox(
+                        width: 380,
+                        height: 700,
+                        child: ViewHomeOptionthree(),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: const SizedBox(
+                        width: 380,
+                        height: 700,
+                        child: ViewHomeOptionone(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
